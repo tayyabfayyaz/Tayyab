@@ -1,0 +1,13 @@
+# Vercel deployment ignores
+node_modules
+.git
+.qwen
+.gemini
+.specify
+*.md
+!README.md
+.env.local
+.env.example
+supabase_setup.sql
+ADMIN_SETUP.md
+UI_UX_ENHANCEMENTS.md
