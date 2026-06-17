@@ -2,66 +2,84 @@
 
 import {
   Code,
-  Paintbrush,
   BrainCircuit,
   Bot,
+  Workflow,
+  Puzzle,
   Braces,
-  GitBranch,
+  Globe,
+  Shield,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 
 const skills = {
-  frontend: [
+  ai_automation: [
     {
-      icon: <Paintbrush className="h-8 w-8 text-purple-400" />,
-      name: "Next.js & React",
+      icon: <BrainCircuit className="h-7 w-7" />,
+      name: "Claude Code / OpenAI API",
       description:
-        "Building modern, server-rendered React applications with a focus on performance and SEO.",
+        "Building intelligent systems powered by cutting-edge LLMs for autonomous decision-making and task execution.",
+      color: "from-purple-500/20 to-purple-500/5",
+      iconColor: "text-purple-400",
     },
     {
-      icon: <Code className="h-8 w-8 text-blue-400" />,
-      name: "TypeScript",
+      icon: <Bot className="h-7 w-7" />,
+      name: "AI Agents & Chatbots",
       description:
-        "Ensuring type safety and scalability in large JavaScript codebases.",
+        "Designing autonomous AI agents and chatbot systems that understand context and execute complex workflows.",
+      color: "from-rose-500/20 to-rose-500/5",
+      iconColor: "text-rose-400",
     },
     {
-      icon: <Braces className="h-8 w-8 text-pink-400" />,
-      name: "Tailwind CSS",
+      icon: <Workflow className="h-7 w-7" />,
+      name: "Workflow Automation",
       description:
-        "Crafting beautiful, custom user interfaces with a utility-first CSS framework.",
+        "Automating repetitive tasks and building seamless AI-integrated workflows using APIs and webhooks.",
+      color: "from-emerald-500/20 to-emerald-500/5",
+      iconColor: "text-emerald-400",
     },
     {
-      icon: <GitBranch className="h-8 w-8 text-green-400" />,
-      name: "Framer Motion",
+      icon: <Puzzle className="h-7 w-7" />,
+      name: "Prompt Engineering & AI Design",
       description:
-        "Creating fluid, interactive animations to bring user interfaces to life.",
+        "Crafting effective prompts and designing AI system architectures for reliable and scalable outputs.",
+      color: "from-amber-500/20 to-amber-500/5",
+      iconColor: "text-amber-400",
     },
   ],
-  ai: [
+  frameworks: [
     {
-      icon: <BrainCircuit className="h-8 w-8 text-rose-400" />,
-      name: "AI Agent Development",
+      icon: <Code className="h-7 w-7" />,
+      name: "Python & TypeScript",
       description:
-        "Designing and implementing autonomous agents with strategic decision-making capabilities.",
+        "Dual-language expertise — Python for AI/backend systems and TypeScript for type-safe web applications.",
+      color: "from-blue-500/20 to-blue-500/5",
+      iconColor: "text-blue-400",
     },
     {
-      icon: <Bot className="h-8 w-8 text-yellow-400" />,
-      name: "Game AI & Logic",
+      icon: <Braces className="h-7 w-7" />,
+      name: "FastAPI & n8n",
       description:
-        "Developing complex game AI using skill systems, state management, and strategic rule-based actions.",
+        "Building high-performance APIs with FastAPI and automating workflows with n8n for seamless integration.",
+      color: "from-teal-500/20 to-teal-500/5",
+      iconColor: "text-teal-400",
     },
     {
-      icon: <Code className="h-8 w-8 text-teal-400" />,
-      name: "Python & C++",
+      icon: <Globe className="h-7 w-7" />,
+      name: "REST APIs & Webhooks",
       description:
-        "Leveraging Python for rapid prototyping and C++ for performance-critical AI components.",
+        "Designing RESTful APIs and webhook integrations for real-time data flow between systems.",
+      color: "from-cyan-500/20 to-cyan-500/5",
+      iconColor: "text-cyan-400",
     },
     {
-      icon: <Braces className="h-8 w-8 text-orange-400" />,
-      name: "API & SDK Integration",
+      icon: <Shield className="h-7 w-7" />,
+      name: "Auth & Security (JWT, Clerk)",
       description:
-        "Creating Python bindings for C++ SDKs to enable cross-language AI development and implementation.",
+        "Implementing secure authentication flows with JWT tokens and Clerk for modern web applications.",
+      color: "from-orange-500/20 to-orange-500/5",
+      iconColor: "text-orange-400",
     },
   ],
 };
@@ -71,64 +89,94 @@ const SkillCard = ({
   name,
   description,
   index,
+  color,
+  iconColor,
 }: {
   icon: React.ReactNode;
   name: string;
   description: string;
   index: number;
+  color: string;
+  iconColor: string;
 }) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    viewport={{ once: true }}
-    className="transform-gpu rounded-xl border bg-card p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+    viewport={{ once: true, margin: "-50px" }}
+    className="group relative overflow-hidden rounded-xl border bg-card p-6 transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
   >
-    <div className="flex items-center gap-4">
-      <div className="rounded-full bg-secondary p-3">{icon}</div>
-      <h3 className="text-xl font-bold text-foreground">{name}</h3>
+    <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+    <div className="relative z-10">
+      <div className="flex items-center gap-4">
+        <div className={`rounded-xl bg-accent p-3 ${iconColor} transition-colors duration-300`}>
+          {icon}
+        </div>
+        <h3 className="text-lg font-bold text-foreground">{name}</h3>
+      </div>
+      <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{description}</p>
     </div>
-    <p className="mt-4 text-muted-foreground">{description}</p>
   </motion.div>
 );
 
 const SkillsSection = () => {
   return (
-    <section className="w-full py-20 md:py-32">
+    <section className="w-full py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+      </div>
+
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-12 text-center"
+          className="mb-16 text-center"
         >
-          <Badge variant="default">My Expertise</Badge>
-          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-            What I Do
+          <Badge variant="outline" className="mb-4 px-4 py-1.5 text-xs font-medium tracking-wide uppercase">
+            My Expertise
+          </Badge>
+          <h2 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+            What I <span className="gradient-text">Do</span>
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            A blend of creative frontend development and strategic AI engineering.
+          <p className="mt-4 max-w-2xl mx-auto text-base text-muted-foreground">
+            AI-driven development, automation-first systems, and intelligent application design.
           </p>
         </motion.div>
 
-        <div className="grid gap-12 md:grid-cols-2">
+        <div className="grid gap-16 md:grid-cols-2">
           <div>
-            <h3 className="mb-8 text-center text-2xl font-semibold text-foreground">
-              Frontend & Design
-            </h3>
-            <div className="grid gap-6">
-              {skills.frontend.map((skill, index) => (
+            <motion.h3
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-8 text-center md:text-left text-2xl font-semibold text-foreground flex items-center gap-3 justify-center md:justify-start"
+            >
+              <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent hidden md:block" />
+              AI & Automation
+            </motion.h3>
+            <div className="grid gap-5">
+              {skills.ai_automation.map((skill, index) => (
                 <SkillCard key={skill.name} {...skill} index={index} />
               ))}
             </div>
           </div>
           <div>
-            <h3 className="mb-8 text-center text-2xl font-semibold text-foreground">
-              AI & Backend
-            </h3>
-            <div className="grid gap-6">
-              {skills.ai.map((skill, index) => (
+            <motion.h3
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-8 text-center md:text-left text-2xl font-semibold text-foreground flex items-center gap-3 justify-center md:justify-start"
+            >
+              <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent hidden md:block" />
+              Frameworks & Systems
+            </motion.h3>
+            <div className="grid gap-5">
+              {skills.frameworks.map((skill, index) => (
                 <SkillCard key={skill.name} {...skill} index={index} />
               ))}
             </div>

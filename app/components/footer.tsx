@@ -5,68 +5,103 @@ import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 import { motion } from "framer-motion";
 
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact", href: "/contact" },
+];
+
+const socialLinks = [
+  { icon: FaGithub, url: "https://github.com/tayyabfayyaz", label: "GitHub" },
+  { icon: FaLinkedin, url: "https://www.linkedin.com/in/tayyab-fayyaz-25757b277/", label: "LinkedIn" },
+  { icon: FaTwitter, url: "https://twitter.com", label: "Twitter" },
+  { icon: FaFacebook, url: "https://www.facebook.com/tayyab.fayyaz.3781", label: "Facebook" },
+];
+
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-gray-200 py-10 px-4 mt-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        {/* Branding */}
+    <footer className="border-t border-border bg-background/80 backdrop-blur-sm">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-extrabold tracking-tight mb-3">
+              <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
+                Tayyab Fayyaz
+              </span>
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+              AI-Autonomous Developer. Building intelligent systems, automation workflows, and the future of AI-driven applications.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">
+              Quick Links
+            </h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">
+              Connect
+            </h4>
+            <div className="flex gap-3">
+              {socialLinks.map(({ icon: Icon, url, label }) => (
+                <motion.a
+                  key={label}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 rounded-xl bg-accent text-muted-foreground hover:text-foreground hover:bg-accent/80 transition-all duration-200"
+                  aria-label={label}
+                >
+                  <Icon size={18} />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-12 pt-8 border-t border-border text-center"
         >
-          <h1 className="text-2xl font-bold">Tayyab Fayyaz</h1>
-          <p className="text-sm mt-2">
-            Code + Design × AI.  
-            <br />
-            Building bridges between pixels, logic, and intelligence.
+          <p className="text-xs text-muted-foreground">
+            &copy; {new Date().getFullYear()} Tayyab Fayyaz. Built with Next.js, Tailwind CSS, and AI.
           </p>
         </motion.div>
-
-        {/* Quick Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-        >
-          <h2 className="text-xl font-semibold mb-4">Quick Links</h2>
-          <ul className="space-y-2 text-sm">
-            <li><Link href="/" className="hover:text-indigo-400 transition">Home</Link></li>
-            <li><Link href="/about" className="hover:text-indigo-400 transition">About</Link></li>
-            <li><Link href="/services" className="hover:text-indigo-400 transition">Services</Link></li>
-            <li><Link href="/portfolio" className="hover:text-indigo-400 transition">Portfolio</Link></li>
-            <li><Link href="/contact" className="hover:text-indigo-400 transition">Contact</Link></li>
-          </ul>
-        </motion.div>
-
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          <h2 className="text-xl font-semibold mb-4">Connect with me</h2>
-          <div className="flex space-x-4 mt-2">
-            <a href="https://github.com/tayyabfayyaz" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition">
-              <FaGithub size={20} />
-            </a>
-            <a href="https://www.linkedin.com/in/tayyab-fayyaz-25757b277/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition">
-              <FaLinkedin size={20} />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition">
-              <FaTwitter size={20} />
-            </a>
-            <a href="https://www.facebook.com/tayyab.fayyaz.3781" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition">
-              <FaFacebook size={20} />
-            </a>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Bottom Note */}
-      <div className="text-center text-sm text-gray-500 mt-10 border-t border-gray-700 pt-6">
-        © {new Date().getFullYear()} Tayyab Fayyaz. Built with Next.js, Tailwind, & AI tools.
       </div>
     </footer>
   );

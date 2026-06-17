@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Youtube, Globe, Facebook } from "lucide-react";
 import Link from "next/link";
 
 const ContactPage = () => {
@@ -118,20 +118,30 @@ const ContactPage = () => {
                 <CardTitle>Follow Me</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex space-x-4">
+                <div className="flex flex-wrap gap-3">
                   <Button variant="outline" size="icon" asChild>
-                    <Link href="#" target="_blank">
+                    <Link href="https://github.com/tayyabfayyaz" target="_blank" rel="noopener noreferrer">
                       <Github className="h-5 w-5" />
                     </Link>
                   </Button>
                   <Button variant="outline" size="icon" asChild>
-                    <Link href="#" target="_blank">
+                    <Link href="https://www.linkedin.com/in/tayyab-fayyaz-25757b277/" target="_blank" rel="noopener noreferrer">
                       <Linkedin className="h-5 w-5" />
                     </Link>
                   </Button>
                   <Button variant="outline" size="icon" asChild>
-                    <Link href="#" target="_blank">
-                      <Twitter className="h-5 w-5" />
+                    <Link href="https://www.facebook.com/tayyab.fayyaz.3781" target="_blank" rel="noopener noreferrer">
+                      <Facebook className="h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="icon" asChild>
+                    <Link href="https://youtu.be/qvUjX6iqokw" target="_blank" rel="noopener noreferrer">
+                      <Youtube className="h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="icon" asChild>
+                    <Link href="https://tayyab-liart.vercel.app" target="_blank" rel="noopener noreferrer">
+                      <Globe className="h-5 w-5" />
                     </Link>
                   </Button>
                 </div>

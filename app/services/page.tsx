@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
-  Paintbrush,
   Code2,
   BrainCircuit,
   Rocket,
@@ -17,33 +16,33 @@ import {
 const services = [
   {
     icon: Bot,
-    title: "AI Agents",
+    title: "AI Agents & Automation",
     description:
-      "Creating artificial agent based systems to perform machine learning and processing tasks with cutting-edge AI models.",
+      "Designing autonomous AI agents and workflow automation systems using Claude Code, OpenAI API, and n8n to reduce manual operations.",
     color: "from-violet-500 to-purple-500",
     glowColor: "violet",
   },
   {
-    icon: Paintbrush,
-    title: "Web Designing",
+    icon: Zap,
+    title: "API & Webhook Integration",
     description:
-      "Crafting elegant, user-centric designs using modern UI principles and tools like Figma, Tailwind, and Chakra UI.",
-    color: "from-pink-500 to-rose-500",
-    glowColor: "pink",
-  },
-  {
-    icon: Code2,
-    title: "Web Development",
-    description:
-      "Building high-performance web applications using Next.js, TypeScript, and modern frontend/backend technologies.",
+      "Building RESTful APIs, webhook integrations, and async workflows for seamless data flow between systems and services.",
     color: "from-blue-500 to-cyan-500",
     glowColor: "blue",
   },
   {
-    icon: BrainCircuit,
-    title: "Python Projects",
+    icon: Code2,
+    title: "Full-Stack Development",
     description:
-      "Creating intelligent systems and automation tools with Python. From data processing to AI-powered web tools.",
+      "Developing modern web applications with Next.js, TypeScript, and Python — from frontend UIs to backend APIs.",
+    color: "from-pink-500 to-rose-500",
+    glowColor: "pink",
+  },
+  {
+    icon: BrainCircuit,
+    title: "AI System Design",
+    description:
+      "Crafting prompt engineering strategies, AI system architectures, and intelligent chatbot solutions for real-world use cases.",
     color: "from-emerald-500 to-teal-500",
     glowColor: "emerald",
   },
@@ -52,31 +51,31 @@ const services = [
 const reasons = [
   {
     icon: Rocket,
-    title: "Performance-First",
-    description: "Optimized apps for speed and smooth UX with lighthouse scores to back it.",
+    title: "Automation-First",
+    description: "Every solution is designed to reduce manual work and improve system efficiency through intelligent automation.",
     color: "from-orange-500 to-red-500",
   },
   {
     icon: Zap,
-    title: "AI-Integrated",
-    description: "I use AI not just in projects but in workflows to automate & innovate.",
+    title: "AI-Native Approach",
+    description: "Built with AI at the core — from development workflows to end-user features and autonomous agents.",
     color: "from-yellow-500 to-amber-500",
   },
   {
     icon: ShieldCheck,
     title: "Secure & Scalable",
-    description: "Following best practices for security, performance, and maintainability.",
+    description: "Following best practices for security, authentication (JWT/Clerk), and scalable API architecture.",
     color: "from-green-500 to-emerald-500",
   },
 ];
 
 const techStack = [
-  { name: "React", gradient: "from-cyan-400 to-blue-500" },
-  { name: "Next.js", gradient: "from-gray-700 to-gray-900" },
-  { name: "Tailwind", gradient: "from-cyan-400 to-blue-600" },
-  { name: "TypeScript", gradient: "from-blue-600 to-blue-800" },
   { name: "Python", gradient: "from-yellow-400 to-blue-500" },
-  { name: "Framer", gradient: "from-pink-500 to-violet-600" },
+  { name: "TypeScript", gradient: "from-blue-600 to-blue-800" },
+  { name: "FastAPI", gradient: "from-teal-400 to-green-600" },
+  { name: "n8n", gradient: "from-red-500 to-orange-600" },
+  { name: "Next.js", gradient: "from-gray-700 to-gray-900" },
+  { name: "OpenAI API", gradient: "from-green-400 to-emerald-600" },
 ];
 
 export default function ServicesPage() {
@@ -109,7 +108,7 @@ export default function ServicesPage() {
               Services That <span className="gradient-hero">Transform Ideas</span> Into Reality
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light">
-              Blending code, creativity, and intelligence to build impactful digital experiences that scale.
+              AI-powered development, automation workflows, and intelligent systems — built to scale.
             </p>
           </motion.div>
         </section>

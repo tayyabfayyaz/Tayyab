@@ -6,24 +6,24 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Globe, File, Square } from "lucide-react";
+import { Globe, Square, GraduationCap } from "lucide-react";
 
 const skills = [
+  { name: "Python", icon: "/logos/python.svg" },
   { name: "TypeScript", icon: "/logos/typescript.svg" },
-  { name: "React", icon: "/logos/react.svg" },
   { name: "Next.js", icon: "/logos/nextjs.svg" },
+  { name: "React", icon: "/logos/react.svg" },
   { name: "Tailwind CSS", icon: "/logos/tailwind.svg" },
   { name: "Framer Motion", icon: "/logos/framer-motion.svg" },
-  { name: "Python", icon: "/logos/python.svg" },
 ];
 
 const expertise = [
-  "Frontend Development",
-  "UI/UX Design",
-  "Full-Stack Architecture",
-  "Agentic AI",
-  "Web3",
-  "DevOps",
+  "AI Agents & Chatbots",
+  "Workflow Automation",
+  "Prompt Engineering",
+  "API Integration",
+  "FastAPI & n8n",
+  "Auth & Security (JWT/Clerk)",
 ];
 
 const AboutPage = () => {
@@ -40,7 +40,7 @@ const AboutPage = () => {
             About Me
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            I am a passionate developer creating modern, performant, and delightful web experiences.
+            AI-Autonomous Developer building intelligent systems, automation workflows, and API-driven applications.
           </p>
         </motion.div>
 
@@ -59,21 +59,16 @@ const AboutPage = () => {
                     <AvatarImage src="/tayyab.png" alt="Tayyab" />
                     <AvatarFallback>T</AvatarFallback>
                   </Avatar>
-                  <h2 className="text-2xl font-semibold">Tayyab</h2>
-                  <p className="text-muted-foreground">Full-Stack Developer</p>
+                  <h2 className="text-2xl font-semibold">Tayyab Fayyaz</h2>
+                  <p className="text-muted-foreground">AI-Autonomous Developer</p>
                   <div className="flex space-x-2 mt-4">
                     <Button variant="outline" size="icon" asChild>
-                      <Link href="#">
+                      <Link href="https://github.com/tayyabfayyaz" target="_blank">
                         <Globe className="h-4 w-4" />
                       </Link>
                     </Button>
                     <Button variant="outline" size="icon" asChild>
-                      <Link href="#">
-                        <File className="h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <Button variant="outline" size="icon" asChild>
-                      <Link href="#">
+                      <Link href="https://tayyab-liart.vercel.app" target="_blank">
                         <Square className="h-4 w-4" />
                       </Link>
                     </Button>
@@ -108,15 +103,15 @@ const AboutPage = () => {
               <CardHeader>
                 <CardTitle>My Journey</CardTitle>
               </CardHeader>
-              <CardContent className="prose prose-invert max-w-none">
+              <CardContent className="prose prose-invert max-w-none space-y-4">
                 <p>
-                  My programming journey began in 2018 with a simple HTML & CSS website. This sparked a passion for creating beautiful and functional digital experiences. I quickly dove deeper, enrolling in a web design course where I fell in love with UI/UX principles and the power of frameworks like Tailwind CSS.
+                  I am an AI-Autonomous Developer with hands-on experience building intelligent systems using AI tools, APIs, and automation workflows. My expertise spans Next.js, Python, and modern AI frameworks — with a strong focus on developing AI assistants, chatbot systems, and API-driven applications.
                 </p>
                 <p>
-                  By 2022, I was building full-stack applications with Next.js and TypeScript, focusing on performance and robust architecture. My curiosity then led me to the world of AI, and since 2024, I have been building agentic AI demos, NLP tools, and intelligent UI features.
+                  Since 2025, I have been designing and building AI-based applications and automation systems as an AI Systems Developer. I specialize in creating scalable, automation-first solutions that reduce manual work and improve system efficiency using tools like GPT, Claude Code, FastAPI, and workflow automation platforms.
                 </p>
                 <p>
-                  Today, I combine my skills in design, logic, and AI to build the next generation of web experiences. I am always eager to learn new technologies and take on challenging projects.
+                  I am passionate about building real-world AI systems — from autonomous task managers to intelligent personal assistants — and continuously experimenting with cutting-edge AI tools and system workflows to push the boundaries of what is possible.
                 </p>
               </CardContent>
             </Card>
@@ -138,6 +133,29 @@ const AboutPage = () => {
                       <span>{skill.name}</span>
                     </div>
                   ))}
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <GraduationCap className="w-5 h-5" />
+                  Education
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold">BSCS (Currently Enrolled)</h4>
+                  <p className="text-sm text-muted-foreground">Iqra University</p>
+                  <p className="text-sm text-muted-foreground">Pursuing AI Engineering and AI Systems</p>
+                </div>
+                <div className="border-t pt-4">
+                  <h4 className="font-semibold">Intermediate | Computer Science</h4>
+                  <p className="text-sm text-muted-foreground">Board of Intermediate of Karachi</p>
+                </div>
+                <div className="border-t pt-4">
+                  <h4 className="font-semibold">Matriculation | Science</h4>
+                  <p className="text-sm text-muted-foreground">Karachi Board</p>
                 </div>
               </CardContent>
             </Card>
