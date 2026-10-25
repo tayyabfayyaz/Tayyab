@@ -1,26 +1,24 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaFacebook, FaBars, FaTimes } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaXTwitter, FaBars, FaXmark } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggleButton } from "./theme_toggle_button";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { GITHUB_URL, LINKEDIN_URL, TWITTER_URL } from "@/lib/site-config";
 
 const navItems = [
   { label: "Home", href: "/" },
+  { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
 ];
 
 const socialLinks = [
-  { icon: FaGithub, url: "https://github.com/tayyabfayyaz" },
-  {
-    icon: FaLinkedin,
-    url: "https://www.linkedin.com/in/tayyab-fayyaz-25757b277/",
-  },
-  { icon: FaTwitter, url: "https://twitter.com" },
-  { icon: FaFacebook, url: "https://www.facebook.com/tayyab.fayyaz.3781" },
+  { icon: FaGithub, url: GITHUB_URL, label: "GitHub" },
+  { icon: FaLinkedin, url: LINKEDIN_URL, label: "LinkedIn" },
+  { icon: FaXTwitter, url: TWITTER_URL, label: "X" },
 ];
 
 const Header: React.FC = () => {
@@ -44,24 +42,17 @@ const Header: React.FC = () => {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-primary/5"
+            ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm"
             : "bg-transparent"
         }`}
       >
         <div className="container mx-auto max-w-7xl px-4 py-4 flex justify-between items-center">
-          <motion.a
-            href="/"
-            className="text-2xl font-extrabold tracking-tight"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
-              TF
+          <Link href="/" className="font-mono text-lg font-bold tracking-tight text-foreground">
+            TF<span className="text-primary">.</span>
+            <span className="text-muted-foreground ml-1 font-medium text-sm hidden sm:inline font-sans">
+              Tayyab Fayyaz
             </span>
-            <span className="text-muted-foreground ml-1 font-medium text-lg hidden sm:inline">
-              | Tayyab Fayyaz
-            </span>
-          </motion.a>
+          </Link>
 
           <nav className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => {
@@ -70,7 +61,7 @@ const Header: React.FC = () => {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  className={`relative px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                     isActive
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
@@ -82,7 +73,7 @@ const Header: React.FC = () => {
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute -bottom-0.5 left-2 right-2 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full"
+                      className="absolute -bottom-0.5 left-2 right-2 h-0.5 bg-primary rounded-full"
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
                   )}
@@ -93,12 +84,13 @@ const Header: React.FC = () => {
 
           <div className="flex items-center space-x-2">
             <div className="hidden md:flex items-center space-x-1">
-              {socialLinks.map(({ icon: Icon, url }, idx) => (
+              {socialLinks.map(({ icon: Icon, url, label }) => (
                 <motion.a
-                  key={idx}
+                  key={label}
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={label}
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.9 }}
                   className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
@@ -117,7 +109,7 @@ const Header: React.FC = () => {
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <FaTimes className="text-lg" />
+                <FaXmark className="text-lg" />
               ) : (
                 <FaBars className="text-lg" />
               )}
@@ -150,7 +142,7 @@ const Header: React.FC = () => {
                   whileTap={{ scale: 0.9 }}
                   aria-label="Close menu"
                 >
-                  <FaTimes className="text-lg" />
+                  <FaXmark className="text-lg" />
                 </motion.button>
               </div>
               <nav className="px-4 space-y-1">
@@ -179,12 +171,13 @@ const Header: React.FC = () => {
                 <div className="border-t border-border pt-6">
                   <p className="text-xs text-muted-foreground text-center mb-4">Connect with me</p>
                   <div className="flex items-center justify-center gap-4">
-                    {socialLinks.map(({ icon: Icon, url }, idx) => (
+                    {socialLinks.map(({ icon: Icon, url, label }, idx) => (
                       <motion.a
-                        key={idx}
+                        key={label}
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={label}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + idx * 0.05 }}

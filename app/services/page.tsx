@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,42 +9,34 @@ import {
   Zap,
   ShieldCheck,
   Bot,
-  Sparkles,
   ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
     icon: Bot,
     title: "AI Agents & Automation",
     description:
-      "Designing autonomous AI agents and workflow automation systems using Claude Code, OpenAI API, and n8n to reduce manual operations.",
-    color: "from-violet-500 to-purple-500",
-    glowColor: "violet",
+      "Designing orchestrator-worker agent systems and automation workflows using Claude, OpenAI, MCP, and n8n to run real business processes.",
   },
   {
     icon: Zap,
     title: "API & Webhook Integration",
     description:
-      "Building RESTful APIs, webhook integrations, and async workflows for seamless data flow between systems and services.",
-    color: "from-blue-500 to-cyan-500",
-    glowColor: "blue",
+      "Building REST APIs, webhook integrations, and async workflows so agents and services exchange data reliably.",
   },
   {
     icon: Code2,
     title: "Full-Stack Development",
     description:
-      "Developing modern web applications with Next.js, TypeScript, and Python — from frontend UIs to backend APIs.",
-    color: "from-pink-500 to-rose-500",
-    glowColor: "pink",
+      "Building the surrounding product — Next.js, TypeScript, Python — from the UI a user sees to the backend an agent runs on.",
   },
   {
     icon: BrainCircuit,
     title: "AI System Design",
     description:
-      "Crafting prompt engineering strategies, AI system architectures, and intelligent chatbot solutions for real-world use cases.",
-    color: "from-emerald-500 to-teal-500",
-    glowColor: "emerald",
+      "Architecting the agent layer itself: task routing, memory, tool access, and prompt design for reliable, production behavior.",
   },
 ];
 
@@ -52,63 +44,39 @@ const reasons = [
   {
     icon: Rocket,
     title: "Automation-First",
-    description: "Every solution is designed to reduce manual work and improve system efficiency through intelligent automation.",
-    color: "from-orange-500 to-red-500",
+    description: "Every build targets the manual step that's actually costing time, not a demo.",
   },
   {
     icon: Zap,
-    title: "AI-Native Approach",
-    description: "Built with AI at the core — from development workflows to end-user features and autonomous agents.",
-    color: "from-yellow-500 to-amber-500",
+    title: "Production-Ready",
+    description: "Agents are deployed, monitored, and iterated on — not left as a prototype.",
   },
   {
     icon: ShieldCheck,
     title: "Secure & Scalable",
-    description: "Following best practices for security, authentication (JWT/Clerk), and scalable API architecture.",
-    color: "from-green-500 to-emerald-500",
+    description: "Auth (JWT/Clerk) and API design follow practices that hold up past day one.",
   },
 ];
 
-const techStack = [
-  { name: "Python", gradient: "from-yellow-400 to-blue-500" },
-  { name: "TypeScript", gradient: "from-blue-600 to-blue-800" },
-  { name: "FastAPI", gradient: "from-teal-400 to-green-600" },
-  { name: "n8n", gradient: "from-red-500 to-orange-600" },
-  { name: "Next.js", gradient: "from-gray-700 to-gray-900" },
-  { name: "OpenAI API", gradient: "from-green-400 to-emerald-600" },
-];
+const techStack = ["Python", "TypeScript", "FastAPI", "n8n", "Next.js", "MCP"];
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute top-0 -left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 -right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }} />
-      </div>
-
-      <div className="px-6 md:px-20 py-20 space-y-32">
-        {/* Hero Section */}
-        <section className="text-center max-w-5xl mx-auto">
+    <main className="min-h-screen bg-background text-foreground">
+      <div className="px-4 md:px-8 py-20 md:py-28 space-y-24 md:space-y-32 max-w-7xl mx-auto">
+        {/* Hero */}
+        <section className="text-center max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
-            <motion.div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 mb-6"
-              whileHover={{ scale: 1.05 }}
-            >
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium gradient-text">What I Do</span>
-            </motion.div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Services That <span className="gradient-hero">Transform Ideas</span> Into Reality
+            <p className="label-mono mb-4">What I do</p>
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+              Agents and systems built to <span className="text-primary">run in production</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light">
-              AI-powered development, automation workflows, and intelligent systems — built to scale.
+            <p className="mt-5 text-lg md:text-xl text-muted-foreground">
+              AI agent architecture, automation workflows, and the backend they run on.
             </p>
           </motion.div>
         </section>
@@ -116,80 +84,34 @@ export default function ServicesPage() {
         {/* Services Grid */}
         <section>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Core <span className="gradient-text">Expertise</span>
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Specialized services tailored to your digital needs
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold">Core expertise</h2>
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: idx * 0.08 }}
               >
-                <Card className="group relative overflow-hidden h-full border-2 hover:border-primary/50 transition-all duration-500 cursor-pointer card-glow hover:scale-105">
-                  {/* Animated gradient background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                  
-                  {/* Floating orb effect */}
-                  <motion.div
-                    className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${service.color} rounded-full blur-3xl opacity-0 group-hover:opacity-30`}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 180, 360],
-                    }}
-                    transition={{
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  />
-
-                  <CardContent className="relative z-10 p-8 flex flex-col items-center text-center space-y-6 h-full">
-                    <motion.div
-                      className="relative"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${service.color} blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
-                      <div className={`p-4 rounded-2xl bg-gradient-to-br ${service.color} relative`}>
-                        <service.icon className="w-10 h-10 text-white" />
-                      </div>
-                    </motion.div>
-
+                <Card className="h-full border hover:border-primary/50 transition-colors duration-300 card-glow">
+                  <CardContent className="p-7 flex flex-col items-center text-center space-y-4 h-full">
+                    <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                      <service.icon className="w-7 h-7" />
+                    </div>
                     <div className="flex-1 flex flex-col">
-                      <h3 className="text-2xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
-                        {service.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <h3 className="text-lg font-bold mb-2">{service.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         {service.description}
                       </p>
                     </div>
-
-                    <motion.div
-                      className="w-full h-1 rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%]"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                      animate={{
-                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    />
                   </CardContent>
                 </Card>
               </motion.div>
@@ -197,50 +119,33 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Why Choose Me */}
-        <section className="relative">
+        {/* Why Partner */}
+        <section>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why <span className="gradient-text">Partner With Me?</span>
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              What sets my approach apart from the rest
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold">Why partner with me</h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {reasons.map((reason, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.15 }}
+                transition={{ delay: idx * 0.1 }}
               >
-                <Card className="group relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-500 card-glow h-full">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${reason.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                  
-                  <CardContent className="relative z-10 p-8 flex flex-col items-center text-center space-y-4">
-                    <motion.div
-                      className="relative"
-                      whileHover={{ y: -5 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${reason.color} blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-500`} />
-                      <div className={`p-4 rounded-full bg-gradient-to-br ${reason.color} relative`}>
-                        <reason.icon className="w-8 h-8 text-white" />
-                      </div>
-                    </motion.div>
-
-                    <h4 className="text-2xl font-bold group-hover:gradient-text transition-all duration-300">
-                      {reason.title}
-                    </h4>
-                    <p className="text-muted-foreground leading-relaxed">
+                <Card className="h-full border hover:border-primary/50 transition-colors duration-300 card-glow">
+                  <CardContent className="p-7 flex flex-col items-center text-center space-y-3">
+                    <div className="p-3 rounded-full bg-primary/10 text-primary">
+                      <reason.icon className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-lg font-bold">{reason.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {reason.description}
                     </p>
                   </CardContent>
@@ -251,73 +156,45 @@ export default function ServicesPage() {
         </section>
 
         {/* Tech Stack */}
-        <section className="relative">
+        <section>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Powered By <span className="gradient-text">Modern Tech</span>
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              The tools and technologies that bring ideas to life
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold">Stack</h2>
           </motion.div>
 
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {techStack.map((tech, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                >
-                  <Card className="group relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-500 cursor-pointer card-glow">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${tech.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
-                    
-                    <CardContent className="relative z-10 p-6 flex items-center justify-center">
-                      <span className={`text-lg font-bold bg-gradient-to-br ${tech.gradient} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300`}>
-                        {tech.name}
-                      </span>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+          <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {techStack.map((tech) => (
+              <div
+                key={tech}
+                className="rounded-lg border border-border bg-card p-4 flex items-center justify-center font-mono text-sm font-medium"
+              >
+                {tech}
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Call to Action */}
-        <section className="text-center py-20">
+        {/* CTA */}
+        <section className="text-center py-10">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto space-y-8"
+            className="max-w-2xl mx-auto space-y-6"
           >
-            <h2 className="text-4xl md:text-6xl font-bold">
-              Ready to <span className="gradient-hero">Build Something</span> Amazing?
+            <h2 className="text-3xl md:text-5xl font-bold">
+              Ready to <span className="text-primary">build your agent</span>?
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Let is collaborate and turn your vision into a reality
-            </p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button 
-                size="lg" 
-                className="rounded-full px-8 py-6 text-lg font-semibold glow-effect group"
-              >
-                Start a Project
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Link href="/contact">
+              <Button size="lg" className="rounded-md px-8 group">
+                Start a project
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Button>
-            </motion.div>
+            </Link>
           </motion.div>
         </section>
       </div>

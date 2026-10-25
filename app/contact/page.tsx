@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Github, Linkedin, Youtube, Globe, Facebook } from "lucide-react";
+import { Github, Linkedin, Youtube } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import { EMAIL, EMAIL_HREF, GITHUB_URL, LINKEDIN_URL, TWITTER_URL } from "@/lib/site-config";
 
 const ContactPage = () => {
   const [status, setStatus] = useState("");
@@ -102,14 +104,14 @@ const ContactPage = () => {
                 <div>
                   <h3 className="font-semibold">Email</h3>
                   <p className="text-muted-foreground">
-                    <a href="mailto:contact@example.com" className="hover:underline">
-                      fayyaztayyab684@gmail.com
+                    <a href={EMAIL_HREF} className="hover:underline">
+                      {EMAIL}
                     </a>
                   </p>
                 </div>
                 <div>
                   <h3 className="font-semibold">Location</h3>
-                  <p className="text-muted-foreground">Remote / Planet Earth / Pakistan</p>
+                  <p className="text-muted-foreground">Karachi, Pakistan · Remote</p>
                 </div>
               </CardContent>
             </Card>
@@ -120,28 +122,23 @@ const ContactPage = () => {
               <CardContent>
                 <div className="flex flex-wrap gap-3">
                   <Button variant="outline" size="icon" asChild>
-                    <Link href="https://github.com/tayyabfayyaz" target="_blank" rel="noopener noreferrer">
+                    <Link href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                       <Github className="h-5 w-5" />
                     </Link>
                   </Button>
                   <Button variant="outline" size="icon" asChild>
-                    <Link href="https://www.linkedin.com/in/tayyab-fayyaz-25757b277/" target="_blank" rel="noopener noreferrer">
+                    <Link href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                       <Linkedin className="h-5 w-5" />
                     </Link>
                   </Button>
                   <Button variant="outline" size="icon" asChild>
-                    <Link href="https://www.facebook.com/tayyab.fayyaz.3781" target="_blank" rel="noopener noreferrer">
-                      <Facebook className="h-5 w-5" />
+                    <Link href={TWITTER_URL} target="_blank" rel="noopener noreferrer" aria-label="X">
+                      <FaXTwitter className="h-5 w-5" />
                     </Link>
                   </Button>
                   <Button variant="outline" size="icon" asChild>
-                    <Link href="https://youtu.be/qvUjX6iqokw" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://youtu.be/qvUjX6iqokw" target="_blank" rel="noopener noreferrer" aria-label="YouTube demo">
                       <Youtube className="h-5 w-5" />
-                    </Link>
-                  </Button>
-                  <Button variant="outline" size="icon" asChild>
-                    <Link href="https://tayyab-liart.vercel.app" target="_blank" rel="noopener noreferrer">
-                      <Globe className="h-5 w-5" />
                     </Link>
                   </Button>
                 </div>

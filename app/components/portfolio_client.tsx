@@ -14,6 +14,7 @@ import {
   Github,
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Project {
   id: string;
@@ -26,32 +27,21 @@ interface Project {
 
 interface ProjectWithCategory extends Project {
   category: 'AI' | 'Web' | 'Design' | 'All';
-  gradient: string;
 }
 
 const categories = [
-  { name: 'All', icon: Sparkles, color: 'text-primary' },
-  { name: 'AI', icon: Brain, color: 'text-purple-400' },
-  { name: 'Web', icon: Code2, color: 'text-blue-400' },
-  { name: 'Design', icon: Palette, color: 'text-green-400' },
-];
-
-const gradients = [
-  'from-purple-500 to-pink-500',
-  'from-blue-500 to-cyan-500',
-  'from-green-500 to-emerald-500',
-  'from-orange-500 to-red-500',
-  'from-violet-500 to-purple-500',
-  'from-pink-500 to-rose-500',
+  { name: 'All', icon: Sparkles },
+  { name: 'AI', icon: Brain },
+  { name: 'Web', icon: Code2 },
+  { name: 'Design', icon: Palette },
 ];
 
 export default function PortfolioClient({ projects }: { projects: Project[] }) {
   const [activeCategory, setActiveCategory] = useState<'AI' | 'Web' | 'Design' | 'All'>('All');
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   const projectsWithCategory: ProjectWithCategory[] = useMemo(() => {
-    return projects.map((project, index) => {
+    return projects.map((project) => {
       let category: 'AI' | 'Web' | 'Design' | 'All' = 'All';
       if (project.tags.includes('AI')) {
         category = 'AI';
@@ -63,7 +53,6 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
       return {
         ...project,
         category,
-        gradient: gradients[index % gradients.length],
       };
     });
   }, [projects]);
@@ -77,34 +66,21 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
   };
 
   return (
-    <main className="min-h-screen px-6 md:px-20 py-20 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-      </div>
-
+    <main className="min-h-screen px-6 md:px-20 py-20">
       {/* Hero Section */}
       <motion.div
         className="text-center max-w-4xl mx-auto mb-16"
-        initial={{ opacity: 0, y: -30 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.6 }}
       >
-        <motion.div
-          className="inline-block mb-6"
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-        >
-          <span className="text-6xl">💼</span>
-        </motion.div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-          Project Portfolio
+        <p className="label-mono mb-4">Archive</p>
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-foreground">
+          Project archive
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-          A curated collection of projects blending <span className="text-primary font-semibold">code</span>,
-          <span className="text-accent font-semibold"> design</span>, and
-          <span className="text-primary font-semibold"> AI</span> to create powerful digital experiences.
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Smaller and earlier projects, managed separately from the featured{" "}
+          <Link href="/work" className="text-primary hover:underline">case studies</Link>.
         </p>
       </motion.div>
 
@@ -134,13 +110,13 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
               whileTap={{ scale: 0.95 }}
             >
               <div className="flex items-center gap-2">
-                <Icon className={`h-5 w-5 ${isActive ? 'text-primary-foreground' : category.color}`} />
+                <Icon className={`h-5 w-5 ${isActive ? 'text-primary-foreground' : 'text-muted-foreground'}`} />
                 <span>{category.name}</span>
               </div>
 
               {isActive && (
                 <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
+                  className="absolute -bottom-1 left-0 right-0 h-1 bg-primary rounded-full"
                   layoutId="activeCategory"
                 />
               )}
@@ -163,24 +139,9 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
             >
               <a href={`/portfolio/${project.id}`}>
                 <Card className="group relative overflow-hidden h-full bg-card border-border hover:border-primary/50 transition-all duration-500 card-glow cursor-pointer">
-                  {/* Gradient Background Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-
-                  {/* Floating Orb Animation */}
-                  <motion.div
-                    className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-0 group-hover:opacity-30`}
-                    animate={hoveredIndex === index ? {
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 90, 0],
-                    } : {}}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
-
                   <CardContent className="p-0 h-full flex flex-col">
                     {/* Image Section */}
                     <div className="relative h-56 overflow-hidden bg-muted">
@@ -226,7 +187,7 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
 
                       {/* Category Badge */}
                       <div className="absolute top-4 right-4">
-                        <Badge className={`bg-gradient-to-r ${project.gradient} border-none text-white font-semibold shadow-lg`}>
+                        <Badge className="bg-primary border-none text-primary-foreground font-semibold shadow-sm">
                           {project.category}
                         </Badge>
                       </div>
@@ -262,7 +223,7 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
 
                       {/* Animated Bottom Line */}
                       <motion.div
-                        className={`h-1 w-0 bg-gradient-to-r ${project.gradient} rounded-full mt-4 group-hover:w-full transition-all duration-500`}
+                        className="h-1 w-0 bg-primary rounded-full mt-4 group-hover:w-full transition-all duration-500"
                       />
                     </div>
                   </CardContent>
@@ -289,16 +250,19 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
       {/* Call to Action */}
       <motion.div
         className="text-center mt-20"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
       >
-        <h3 className="text-3xl font-bold mb-4">Like what you see?</h3>
-        <p className="text-muted-foreground mb-6">Let is collaborate and build something amazing together.</p>
-        <Button size="lg" className="glow-effect">
-          Get in Touch
-          <Sparkles className="ml-2 h-5 w-5" />
-        </Button>
+        <h3 className="text-2xl font-bold mb-4">Looking for something newer?</h3>
+        <p className="text-muted-foreground mb-6">The featured case studies cover the recent, in-depth work.</p>
+        <Link href="/work">
+          <Button size="lg">
+            View case studies
+            <Sparkles className="ml-2 h-5 w-5" />
+          </Button>
+        </Link>
       </motion.div>
     </main>
   );

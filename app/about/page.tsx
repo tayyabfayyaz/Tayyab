@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Globe, Square, GraduationCap } from "lucide-react";
+import { Github, Globe, GraduationCap } from "lucide-react";
+import { GITHUB_URL, SITE_URL } from "@/lib/site-config";
 
 const skills = [
   { name: "Python", icon: "/logos/python.svg" },
@@ -63,13 +64,13 @@ const AboutPage = () => {
                   <p className="text-muted-foreground">AI-Autonomous Developer</p>
                   <div className="flex space-x-2 mt-4">
                     <Button variant="outline" size="icon" asChild>
-                      <Link href="https://github.com/tayyabfayyaz" target="_blank">
-                        <Globe className="h-4 w-4" />
+                      <Link href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <Github className="h-4 w-4" />
                       </Link>
                     </Button>
                     <Button variant="outline" size="icon" asChild>
-                      <Link href="https://tayyab-liart.vercel.app" target="_blank">
-                        <Square className="h-4 w-4" />
+                      <Link href={SITE_URL} target="_blank" rel="noopener noreferrer" aria-label="Live site">
+                        <Globe className="h-4 w-4" />
                       </Link>
                     </Button>
                   </div>

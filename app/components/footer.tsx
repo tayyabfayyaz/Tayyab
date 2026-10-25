@@ -2,21 +2,32 @@
 
 import React from "react";
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import {
+  COPYRIGHT,
+  EMAIL,
+  EMAIL_HREF,
+  GITHUB_URL,
+  IOTADEV_NAME,
+  IOTADEV_URL,
+  LINKEDIN_URL,
+  TWITTER_URL,
+} from "@/lib/site-config";
+import { Mail } from "lucide-react";
 
 const quickLinks = [
   { label: "Home", href: "/" },
+  { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
 ];
 
 const socialLinks = [
-  { icon: FaGithub, url: "https://github.com/tayyabfayyaz", label: "GitHub" },
-  { icon: FaLinkedin, url: "https://www.linkedin.com/in/tayyab-fayyaz-25757b277/", label: "LinkedIn" },
-  { icon: FaTwitter, url: "https://twitter.com", label: "Twitter" },
-  { icon: FaFacebook, url: "https://www.facebook.com/tayyab.fayyaz.3781", label: "Facebook" },
+  { icon: FaGithub, url: GITHUB_URL, label: "GitHub" },
+  { icon: FaLinkedin, url: LINKEDIN_URL, label: "LinkedIn" },
+  { icon: FaXTwitter, url: TWITTER_URL, label: "X" },
+  { icon: Mail, url: EMAIL_HREF, label: "Email" },
 ];
 
 const Footer: React.FC = () => {
@@ -30,13 +41,21 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-extrabold tracking-tight mb-3">
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
-                Tayyab Fayyaz
-              </span>
+            <h3 className="text-xl font-extrabold tracking-tight mb-3 text-foreground">
+              Tayyab Fayyaz
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              AI-Autonomous Developer. Building intelligent systems, automation workflows, and the future of AI-driven applications.
+              AI Agent Engineer building multi-agent systems — orchestrator-worker
+              architectures, MCP integrations, and production deployments — under{" "}
+              <a
+                href={IOTADEV_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                {IOTADEV_NAME}
+              </a>
+              .
             </p>
           </motion.div>
 
@@ -46,7 +65,7 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">
+            <h4 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider font-mono">
               Quick Links
             </h4>
             <ul className="space-y-2.5">
@@ -69,7 +88,7 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">
+            <h4 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider font-mono">
               Connect
             </h4>
             <div className="flex gap-3">
@@ -77,8 +96,8 @@ const Footer: React.FC = () => {
                 <motion.a
                   key={label}
                   href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={label === "Email" ? undefined : "_blank"}
+                  rel={label === "Email" ? undefined : "noopener noreferrer"}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="p-3 rounded-xl bg-accent text-muted-foreground hover:text-foreground hover:bg-accent/80 transition-all duration-200"
@@ -88,6 +107,7 @@ const Footer: React.FC = () => {
                 </motion.a>
               ))}
             </div>
+            <p className="mt-4 text-sm text-muted-foreground">{EMAIL}</p>
           </motion.div>
         </div>
 
@@ -98,9 +118,7 @@ const Footer: React.FC = () => {
           viewport={{ once: true }}
           className="mt-12 pt-8 border-t border-border text-center"
         >
-          <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Tayyab Fayyaz. Built with Next.js, Tailwind CSS, and AI.
-          </p>
+          <p className="text-xs text-muted-foreground font-mono">{COPYRIGHT}</p>
         </motion.div>
       </div>
     </footer>
